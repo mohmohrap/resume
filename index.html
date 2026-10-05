@@ -1,239 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amos Otieno's Resume</title>
+    <title>Amos Otieno - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #2e2e2e;
-            color: #f5f5f5;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        header {
-            background-color: #3b3b3b;
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        header h1 {
-            margin: 0;
-            color: #d4a373;
-        }
-
-        nav {
-            background-color: #454545;
+        .resume-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px 25px 70px 25px; /* extra bottom padding so footer never overlaps content */
+            position: relative;
             overflow: hidden;
         }
 
-        nav a {
-            float: left;
-            display: block;
-            color: #f5f5f5;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+            margin-bottom: 25px;
         }
 
-        nav a:hover {
-            background-color: #575757;
+        .name-title h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
 
-        .container {
-            padding: 20px;
+        .name-title h2 {
+            font-size: 18px;
+            color: #3498db;
+            font-weight: 500;
         }
 
-        .sticky-section {
+        .contact-info {
+            text-align: right;
+            font-size: 13px;
+        }
+
+        .contact-info div {
+            margin-bottom: 5px;
+        }
+
+        .contact-info i {
+            width: 18px;
+            color: #3498db;
+            margin-right: 5px;
+        }
+
+        /* FIX: .section is now properly defined (was referenced but never styled) */
+        .section {
             margin-bottom: 20px;
         }
 
-        .sticky-section h2 {
-            position: sticky;
-            top: 0;
-            color: #d4a373;
-            border-bottom: 2px solid #d4a373;
+        .section-title {
+            font-size: 12px;
+            color: #2c3e50;
             padding-bottom: 5px;
+            border-bottom: 1px solid #3498db;
+            margin-bottom: 11px;
+            display: flex;
+            align-items: center;
         }
 
-        .footer {
-            background-color: #3b3b3b;
-            text-align: center;
+        .section-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .section-title h2 {
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .skill-category h3 {
+            font-size: 16px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .skills-list {
+            list-style-type: none;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skills-list li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .company {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .position {
+            font-style: italic;
+            color: #3498db;
+            margin-bottom: 8px;
+        }
+
+        .responsibilities {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .responsibilities li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .responsibilities li:before {
+            content: "▹";
+            color: #3498db;
+            position: absolute;
+            left: -20px;
+        }
+
+        .education-item {
+            margin-bottom: 15px;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .institution {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .references {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .reference-item {
+            flex: 1;
+            min-width: 200px;
             padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            background: #f8f9fa;
+            border-left: 3px solid #3498db;
         }
 
-        .footer p {
-            margin: 0;
-            color: #f5f5f5;
+        .reference-name {
+            font-weight: 600;
+            color: #2c3e50;
         }
 
-        a {
-            text-decoration-line: none;
-            color: burlywood;
+        .reference-position {
+            font-size: 14px;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        /* FIX: footer now sits inside the resume container (position: absolute),
+           so it no longer floats over the page and cover content. */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            padding: 0 25px;
+        }
+
+        .portfolio-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .portfolio-link:hover {
+            text-decoration: underline;
+        }
+
+        .certification {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .technical-projects {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .language {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                padding: 20px;
+                width: 100%;
+                min-height: 100vh;
+            }
         }
     </style>
-    
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXKDNB2LQJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TXKDNB2LQJ');
-</script>
 <body>
-    <header>
-        <h1>Amos Otieno</h1>
-        <p>Flutter GUI Developer</p>
-    </header>
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#experience">Experience</a>
-        <a href="#cert">Certifications</a>
-        <a href="#projects">Projects</a>
-        <a href="#edu">Education</a>
-        <a href="docs/docs.html">Documents</a>
-        <a href="#contact">Contact</a>
-        <a href="family.html">Family tree</a>
-        <a href="https://mohmohrap.github.io/toytank/">Website</a>
-        <a href="#socials">Socials</a>
-    </nav>
-    <div class="container">
-        <div id="about" class="sticky-section">
-            <h2>About Me</h2>
-            <p>Hello! My name is Amos Otieno, and I am passionate about Flutter GUI development. Although I have little
-                experience, I am actively learning and growing in this field. I completed my Computer Science
-                attachment at KIRDI.</p>
-            <p>This is a webite that gives an overview of what I or you can do with HTML;
-                I think it's beautiful - and simple.
-            </p>
-        </div>
-        <div id="cert" class="sticky-section">
-            <h2>Certifications</h2>
-            <p><strong>Cisco Networking Academy</strong>(Dec 2024 - Jan 2025)</p>
-            <ul>
-                <li>Introduction to cybersecurity.</li>
-            </ul>
-            <p><strong>Cisco Networking Academy</strong>(Dec 2025 - Jun 2026)</p>
-            <ul>
-                <li>Introduction to Modern AI</li>
-                <li>Introduction to IoT</li>
-                <li>Digital Safety & Security Awareness</li>
-                <li>Junior Cybersecurity Analyst</li>
-            </ul>
+    <div class="resume-container">
+        <div class="header">
+            <div class="name-title">
+                <h1>AMOS OTIENO</h1>
+                <h2>Developer | IT Support | Cybersecurity | Trainer</h2>
+            </div>
+            <div class="contact-info">
+                <div><i class="fas fa-map-marker-alt"></i>Thika, Kenya</div>
+                <div><i class="fas fa-phone"></i>0758003058</div>
+                <div><i class="fas fa-envelope"></i>okonoamos@gmail.com</div>
+                <div><i class="fas fa-globe"></i><a href="https://github.com/mohmohrap" class="portfolio-link">github.com/mohmohrap</a></div>
+            </div>
         </div>
 
-        <div id="experience" class="sticky-section">
-            <h2>Experience</h2>
-
-            <p><strong>Facilitator at KSSM, Nairobi</strong>(From Sep 2025)</p>
-            <ul>
-                <li>Developing and disseminating security curriculum.</li>
-            </ul>
-            <p><strong>Industrial Attachment at KIRDI, Nairobi</strong>(May 2024 - Aug 2024)</p>
-            <ul>
-                <li>Gaining hands-on experience in various aspects like domain network configuration.</li>
-                <li>Setting up and ensuring smooth operation of computers and computing devices.</li>
-            </ul>
-            <p><strong>Cyber Assistant at RuralNet Technologies, Siaya</strong> (Feb 2021 - Apr 2021)</p>
-            <ul>
-                <li>Assisted customers with MS Office tasks and email functions.</li>
-                <li>Provided support for filling returns and other cyber cafe services.</li>
-            </ul>
-            <p>
-                <strong>Music Production</strong>(From 2019)
-            </p>
-            <ul>
-                <li>Making instrumentals.</li>
-                <li>Mixing and mastering.</li>
-                <li>See my many <a href="https://youtube.com/c/mohmohrap" target="_blank" style="color: #d4a373;">YouTube</a> videos.</li>
-            </ul>
-        </div>
-        <div id="projects" class="sticky-section">
-            <h2>Projects</h2>
-            <p>Find my coding projects - mostly Flutter - on my <a href="https://github.com/mohmohrap" target="_blank"
-                    style="color: #d4a373;">GitHub</a>.</p>
-            <p>Find my music projects - mostly beats - on my <a href="https://mohmohrap.github.io/music-site/"
-                    target="_blank" style="color: #d4a373;">website.</a></p>
-        </div>
-        <div id="edu" class="sticky-section">
-            <h2>Education</h2>
-            <p>
-                <strong>Computer Science Undergraduate, Gretsa University, Thika</strong>(May 2018 - Dec 2024)
-            </p>
-            <ul>
-                <li>School based curriculum. 8-4-4, SCLD.</li>
-                <li>Internal school projects in form of assignments; (Network design, ERP creation > php).</li>
-            </ul>
-            <p>
-                <strong>
-                    KCSE, St. Mary's Ukwala Boys High School, Ukwala
-                </strong>(Feb 2014 - Nov 2017)
-            </p>
-            <ul>
-                <li>
-                    School based curriculum, 8-4-4, B-.
-                </li>
-                <li>
-                    Internal school projects in agriculture like gardening.
-                </li>
-                <li>Math & Chemistry contests.</li>
-                <li>
-                    Christian Union. Young Christian Students.
-                </li>
-            </ul>
-            <p>
-                <strong>
-                    KCPE, Nyasanda Pri. School, Ugunja
-                </strong>(2013)
-            </p>
-            <ul>
-                <li>
-                    School based curriculum, 8-4-4, B-.
-                </li>
-            </ul>
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-user-tie"></i>
+                <h2>PROFESSIONAL SUMMARY</h2>
+            </div>
+            <div class="summary">
+                Resourceful Computer Scientist with hands-on experience in cross-platform development, IT support,
+                and training. Proficient in modern backend development with Python, database management, and mobile
+                applications. Demonstrates strong problem-solving abilities in diagnosing technical issues, managing
+                systems, and building scalable digital solutions. Proven capacity to handle diverse users.
+            </div>
         </div>
 
-        <div style="padding-bottom: 20px;" id="contact" class="sticky-section">
-            <h2>Contact</h2>
-            <p>You can email me at <a href="mailto:amos.otieno@gretsauniversity.com"
-                    style="color: #d4a373;">amos.otieno@gretsauniversity.com</a>.</p>
-            <p>Or at <a href="mailto:mohmohrap@gmail.com" style="color: #d4a373;">mohmohrap@gmail.com</a>.</p>
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-briefcase"></i>
+                <h2>EXPERIENCE</h2>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Kenya School of Security Management (KSSM)</div>
+                    <div class="date">From June 2025</div>
+                </div>
+                <div class="position">Instructor</div>
+                <ul class="responsibilities">
+                    <li>Researched, developed and delivered curriculum for security-related units to certificate-level students</li>
+                    <li>Coordinated the cybersecurity training programme, including student onboarding and progress tracking</li>
+                    <li>Maintained records and other documentation in line with institutional standards</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Arsenal Security Services</div>
+                    <div class="date">Jan 2026 - Sep 2026</div>
+                </div>
+                <div class="position">Software Specialist</div>
+                <ul class="responsibilities">
+                    <li>Develop integrated security solutions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Platinum Credit Limited</div>
+                    <div class="date">Jan 2025 - Jun 2025</div>
+                </div>
+                <div class="position">Salesperson</div>
+                <ul class="responsibilities">
+                    <li>Marketed and processed loan products, primarily car loans and other asset financing</li>
+                    <li>Built and maintained a client pipeline through direct outreach, referrals, and follow-up</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Kenya Industrial Research and Development Institute (KIRDI)</div>
+                    <div class="date">May 2024 - Jul 2024</div>
+                </div>
+                <div class="position">ICT Support Technician</div>
+                <ul class="responsibilities">
+                    <li>Provided end-user support for computing issues across departments</li>
+                    <li>Streamlined email and device setup processes; improving work</li>
+                    <li>Streamlined device, accounts and network setup processes</li>
+                    <li>Documented IT processes and procedures for internal use and new staff training</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">RuralNet Technologies</div>
+                    <div class="date">Jan 2021 - Apr 2021</div>
+                </div>
+                <div class="position">Instructor &amp; Cyber Assistant</div>
+                <ul class="responsibilities">
+                    <li>Trained individuals on MS Office tools and fundamental computing skills</li>
+                    <li>Provided comprehensive cyber cafe services including printing, typing, and online applications</li>
+                    <li>Assisted clients with e-citizen services and provided technical support</li>
+                    <li>Went on to join Dan Cyber for a year and open a Retail Store</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div id="socials" class="section" style="text-align: center; padding-bottom: 20px;">
-        <p>
-            <a style="padding: 4px;"
-                href="https://open.spotify.com/artist/4B2En41qZCMZ708GABWXLp?si=YoI6z9tPQ_6voYSX9yxzjw&nd=1&dlsi=1a74822816fa4010"
-                target="_blank">Spotify</a>
-            <a style="padding: 4px;" href="https://music.apple.com/in/artist/mohmohrap/1554550698"
-                target="_blank">iTunes</a>
-            <a style="padding: 4px;" href="https://www.tiktok.com/@mohmohrap" target="_blank">TikTok</a>
-            <a style="padding: 4px;" href="https://instagram.com/olmytea" target="_blank">Instagram</a>
-            <a style="padding: 4px;" href="https://x.com/mohmohrap" target="_blank">X</a>
-            <a style="padding: 4px;" href="https://soundcloud.com/mohmohrap" target="_blank">SoundCloud</a>
-        </p>
-        <p style="padding-bottom: 30px;">
-            <a style="padding: 4px;" href="https://youtube.com/c/mohmohrap" target="_blank">YouTube</a>
-            <a style="padding: 4px;" href="https://www.paypal.com/donate/?hosted_button_id=X3ME4ACXJJ5PW"
-                target="_blank">PayPal
-            </a>
-        </p>
-    </div>
 
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>EDUCATION</h2>
+            </div>
 
-    <div class="footer">
-        <p>&copy; 2024 - 2025 Amos Otieno</p>
-    </div>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="degree">Security</div>
+                    <div class="date">Aug 2026</div>
+                </div>
+                <div class="institution">Dahua</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="degree">Bachelor of Science in Computer Science</div>
+                    <div class="date">Graduated Dec 2024</div>
+                </div>
+                <div class="institution">Gretsa University, Thika</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="degree">KCSE</div>
+                    <div class="date">Graduated Dec 2017</div>
+                </div>
+                <div class="institution">Ukwala Boys High School</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-certificate"></i>
+                <h2>CERTIFICATIONS</h2>
+            </div>
+            <div class="certification">
+                <div>Dahua Security Products</div>
+            </div>
+            <div class="certification">
+                <div>Cisco Networking Academy - CCST progressing</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-handshake"></i>
+                <h2>REFERENCES</h2>
+            </div>
+            <div class="references">
+                <div class="reference-item">
+                    <div class="reference-name">Madam Olivia</div>
+                    <div class="reference-position">Rural Net Technologies</div>
+                </div>
+                <div class="reference-item">
+                    <div class="reference-name">Mr. William Arwa</div>
+                    <div class="reference-position">Kenya Industrial Research and Development Institute</div>
+                </div>
+                <div class="reference-item">
+                    <div class="reference-name">Mr. Stephen Mulwa</div>
+                    <div class="reference-position">Kenya School of Security Management</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIX: stray closing </div> that had no matching opening tag has been removed -->
+        <div class="footer">
+            &copy; 2025 - 2026 Amos Otieno &middot; Resume
+        </div>
     </div>
 </body>
-
 </html>
